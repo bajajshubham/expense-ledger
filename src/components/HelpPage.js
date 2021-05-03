@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HelpPage = () => (
-    <div>Display help</div>
+    <div>Contact me at dev@test.com</div>
 )
 
 export default HelpPage;

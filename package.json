@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Shubham Bajaj",
-  "license": "Not MIT",
+  "license": "AFL-3.0",
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack",
     "dev-server": "webpack serve",
+    "webpack:prod": "webpack --env production",
+    "build:dev": "webpack --config webpack.dev.js",
+    "build:prod": "webpack --config webpack.prod.js",
     "test": "jest --config=jest.config.json"
   },
   "dependencies": {
@@ -18,8 +20,8 @@
     "@babel/preset-react": "^7.13.13",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
-    "babel-core": "6.25.0",
-    "babel-loader": "^7.1.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "1.5.2",
@@ -28,6 +30,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
+    "html-webpack-plugin": "^5.3.1",
     "live-server": "^1.2.1",
     "node-sass": "5.0.0",
     "normalize.css": "^8.0.1",
@@ -49,6 +52,9 @@
   },
   "devDependencies": {
     "jest": "^26.6.3",
-    "webpack-cli": "^4.5.0"
+    "mini-css-extract-plugin": "^1.6.0",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack-cli": "^4.6.0",
+    "webpack-merge": "^5.7.3"
   }
 }
