@@ -1,6 +1,7 @@
 node_modules/
-public/bundle.js
-public/bundle.js.LICENSE.txt
-public/bundle.js.map
-public/styles.css
-public/styles.css.map
+public/dist/
+webpack.common.js
+webpack.config.js.old
+webpack.dev.js
+webpack.prod.js
+.babelrc_bkp
