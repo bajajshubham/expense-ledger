@@ -12,7 +12,7 @@
     "build:prod": "webpack --config webpack.prod.js",
     "test": "jest --config=jest.config.json",
     "start": "node server/server.js",
-    "heroku-postbuild": "npm run build:prod"
+    "heroku-postbuild": "npm run webpack:prod"
   },
   "engine": {
     "node": "14.15.1",
