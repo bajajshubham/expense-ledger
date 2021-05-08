@@ -9,3 +9,5 @@ webpack.prod.js
 webpack.prod.js
 webpack.common.js
 public/dist/
+.env.test
+.env.development
