@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editExpense, deleteExpense } from '../actions/expenses';
+import { editExpense, startDeleteExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
 export class EditExpensePage extends React.Component {
@@ -10,7 +10,7 @@ export class EditExpensePage extends React.Component {
     };
 
     onClick = () => {
-        this.props.deleteExpense({ id: this.props.expense.id });
+        this.props.startDeleteExpense({ id: this.props.expense.id });
         this.props.history.push('/'); //redirects to the mentioned url
     };
 
@@ -34,7 +34,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
     return {
         editExpense: (id, update) => dispatch(editExpense(id, update)),
-        deleteExpense: ({ id }) => dispatch(deleteExpense({ id }))
+        startDeleteExpense: (id) => dispatch(startDeleteExpense(id))
     };
 };
 
