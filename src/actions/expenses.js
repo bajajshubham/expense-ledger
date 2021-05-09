@@ -53,6 +53,16 @@ export const editExpense = (id, updates) => ({
   updates
 });
 
+export const startEditExpense = (id, updates) => {
+  return (dispatch) => {
+    return database.ref(`expenses/${id}`).update(updates) //for firebase
+      .then(() => {
+        dispatch(editExpense(id, updates)); // for redux
+      });
+  };
+};
+
+//to set redux store from firebase
 export const setExpenses = (expenses) => ({ // from firebase to redux store
   type: 'SET_EXPENSES',
   expenses

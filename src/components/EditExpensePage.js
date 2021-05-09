@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editExpense, startDeleteExpense } from '../actions/expenses';
+import { startEditExpense, startDeleteExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
 export class EditExpensePage extends React.Component {
     onSubmit = (update) => {
-        this.props.editExpense(this.props.expense.id, update);
+        this.props.startEditExpense(this.props.expense.id, update);
         this.props.history.push('/'); //redirects to the mentioned url
     };
 
@@ -33,7 +33,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        editExpense: (id, update) => dispatch(editExpense(id, update)),
+        startEditExpense: (id, update) => dispatch(startEditExpense(id, update)),
         startDeleteExpense: (id) => dispatch(startDeleteExpense(id))
     };
 };
