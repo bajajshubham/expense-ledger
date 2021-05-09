@@ -1,27 +1,20 @@
-import uuid from 'uuid';
 import database from '../firebase/firebase';
 
 //  Add expense generator
 export const addExpense = (expense) => ({
   type: 'ADD_EXPENSE',
   expense
-  /*: {
-    id: uuid(),
-    description,
-    note,
-    amount,
-    createdAt
-  }*/
 }
 );
 
 export const startAddExpense = (expenseData = {}) => {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     const {
       description = '', note = '', amount = 0, createdAt = 0
     } = expenseData;
     const expense = { description, note, amount, createdAt }
-    database.ref('expenses').push(expense)
+    database.ref(`users/${uid}/expenses`).push(expense)
       .then((ref) => {
         dispatch(addExpense({
           id: ref.key,
@@ -38,8 +31,9 @@ export const deleteExpense = ({ id }) => ({
 });
 
 export const startDeleteExpense = ({ id } = {}) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).remove()
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses/${id}`).remove()
       .then(() => {
         dispatch(deleteExpense({ id }));
       });
@@ -54,8 +48,9 @@ export const editExpense = (id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-  return (dispatch) => {
-    return database.ref(`expenses/${id}`).update(updates) //for firebase
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses/${id}`).update(updates) //for firebase
       .then(() => {
         dispatch(editExpense(id, updates)); // for redux
       });
@@ -69,8 +64,9 @@ export const setExpenses = (expenses) => ({ // from firebase to redux store
 });
 
 export const startSetExpenses = () => {
-  return (dispatch) => {
-    return database.ref('expenses').once('value').then((snapshot) => {
+  return (dispatch,getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
       const expenses = [];
       snapshot.forEach((childSnapshot) => {
         expenses.push({

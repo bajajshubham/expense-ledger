@@ -6,12 +6,12 @@ import ExpenseForm from './ExpenseForm';
 export class EditExpensePage extends React.Component {
     onSubmit = (update) => {
         this.props.startEditExpense(this.props.expense.id, update);
-        this.props.history.push('/'); //redirects to the mentioned url
+        this.props.history.push('/dashboard'); //redirects to the mentioned url
     };
 
     onClick = () => {
         this.props.startDeleteExpense({ id: this.props.expense.id });
-        this.props.history.push('/'); //redirects to the mentioned url
+        this.props.history.push('/dashboard'); //redirects to the mentioned url
     };
 
     render() {
