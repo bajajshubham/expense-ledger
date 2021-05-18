@@ -11,3 +11,5 @@ webpack.common.js
 public/dist/
 .env.test
 .env.development
+src/playground
+src/tests

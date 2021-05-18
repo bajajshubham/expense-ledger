@@ -28,26 +28,38 @@ export class ExpenseListFilters extends React.Component {
 
   render() {
     return (
-      <div>
-        <input type="text" placeholder="search" value={this.props.filters.text}
-          onChange={this.onTextChange}
-        />
-        <select onChange={this.onSortChange}>
-          <option value="date">Date</option>
-          <option value="amount">Amount</option>
-        </select>
-        <DateRangePicker
-          startDate={this.props.filters.startDate}
-          endDate={this.props.filters.endDate}
-          onDatesChange={this.onDatesChange}
-          focusedInput={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          startDateId="someStartid" // required id in latest update
-          endDateId="someEndId"
-          showClearDates={true}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
+      <div className="content-container">
+        <div className="input-group">
+          <div className="input-group__item">
+            <input className="text-input" type="text" placeholder="search"
+              value={this.props.filters.text}
+              onChange={this.onTextChange}
+            />
+          </div>
+          <div className="input-group__item">
+            <select className="select" onChange={this.onSortChange}>
+              <option value="date"> Sort by date</option>
+              <option value="amount">Sort by amount</option>
+            </select>
+          </div>
+          <div className="input-group__item">
+            <DateRangePicker
+              startDate={this.props.filters.startDate}
+              endDate={this.props.filters.endDate}
+              onDatesChange={this.onDatesChange}
+              focusedInput={this.state.calendarFocused}
+              onFocusChange={this.onFocusChange}
+              startDateId="someStartid" // required id in latest update
+              endDateId="someEndId"
+              showClearDates={true}
+              numberOfMonths={1}
+              isOutsideRange={() => false}
+            />
+          </div>
+        </div>
+
+
+
       </div>
     )
   };
